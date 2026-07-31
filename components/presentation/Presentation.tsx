@@ -20,6 +20,7 @@ export function Presentation() {
   const [current, setCurrent] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const slideStage = useRef<HTMLElement>(null);
 
   const goTo = useCallback((next: number, history: "push" | "replace" = "push") => {
     const safe = clampSlide(next);
@@ -72,6 +73,13 @@ export function Presentation() {
   }, []);
 
   useEffect(() => {
+    // The stage becomes the scroll container on small screens. Always start a
+    // newly selected slide at its heading instead of keeping the prior slide's
+    // scroll position.
+    slideStage.current?.scrollTo({ top: 0, behavior: "instant" });
+  }, [current]);
+
+  useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
       if (
@@ -111,6 +119,10 @@ export function Presentation() {
   };
 
   const onTouchStart = (event: React.TouchEvent) => {
+    if ((event.target as HTMLElement).closest(".role-table")) {
+      touchStart.current = null;
+      return;
+    }
     const touch = event.changedTouches[0];
     touchStart.current = { x: touch.clientX, y: touch.clientY };
   };
@@ -146,6 +158,7 @@ export function Presentation() {
       </div>
 
       <section
+        ref={slideStage}
         className="slide-stage"
         aria-live="polite"
         aria-label={`${positionLabel} of ${LAST_SLIDE - 1} lecture slides`}
