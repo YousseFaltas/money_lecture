@@ -104,11 +104,6 @@ function OpeningSlide() {
         <p className="opening-subtitle">
           A beginner’s guide to managing money and understanding the Egyptian stock market
         </p>
-        <div className="opening-footer">
-          <strong>SCOUT TEAM LECTURE</strong>
-          <span />
-          <p>AGES 15–18</p>
-        </div>
       </div>
       <div className="hero-visual" aria-label="Coins growing into a plant and line chart">
         <div className="hero-compass">
@@ -301,8 +296,13 @@ function Slide06() {
       <div className="index-layout">
         <div className="pizza-panel">
           <p className="lead">An index measures a <em>selected group</em> of companies.</p>
-          <div className="pizza">
-            <span className="slice-label s1">A</span><span className="slice-label s2">B</span><span className="slice-label s3">C</span><span className="slice-label s4">D</span>
+          <div className="pizza" aria-label="Five companies with unequal index weights" />
+          <div className="pizza-legend" aria-label="Example company weights">
+            <span><i className="slice-a" />A · 38%</span>
+            <span><i className="slice-b" />B · 24%</span>
+            <span><i className="slice-c" />C · 20%</span>
+            <span><i className="slice-d" />D · 12%</span>
+            <span><i className="slice-e" />E · 6%</span>
           </div>
           <div className="pizza-notes"><span>Different weights</span><span>Enter ↔ Leave</span></div>
           <p className="small-copy">Like pizza slices, some companies have more weight — so they move the index more.</p>
@@ -402,34 +402,79 @@ function Slide10() {
 }
 
 function Slide11() {
+  const screenshots = [
+    { src: "/screenshots/1.jpeg", step: "01", label: "Explore" },
+    { src: "/screenshots/2.jpeg", step: "02", label: "Fund types" },
+    { src: "/screenshots/3.jpeg", step: "03", label: "Available funds" },
+  ];
+
   return (
-    <Slide eyebrow="LIVE WALKTHROUGH · EXPLORE" title="11. Explore the Available Funds">
-      <div className="screenshots-layout two-devices">
-        <AssetPlaceholder src="/screenshots/explore-page.png" label="Explore page screenshot"/>
-        <div className="step-connector"><span>01</span><i/><span>02</span></div>
-        <AssetPlaceholder src="/screenshots/funds-page.png" label="Funds page screenshot"/>
+    <Slide eyebrow="LIVE WALKTHROUGH · EXPLORE" title="11. Explore the Available Funds" className="media-slide">
+      <div className="screenshots-layout three-devices">
+        {screenshots.map((screenshot) => (
+          <figure className="screen-sequence" key={screenshot.src}>
+            <figcaption>
+              <span>{screenshot.step}</span>
+              <strong>{screenshot.label}</strong>
+            </figcaption>
+            <AssetPlaceholder
+              src={screenshot.src}
+              label={`${screenshot.label} screenshot`}
+            />
+          </figure>
+        ))}
       </div>
     </Slide>
   );
 }
 
 function Slide12() {
+  const fundViews = [
+    { src: "/screenshots/4.jpeg", step: "01", label: "EGX70 fund" },
+    { src: "/screenshots/5.jpeg", step: "02", label: "Real estate fund" },
+    { src: "/screenshots/11.jpeg", step: "03", label: "Gold fund" },
+  ];
+
   return (
-    <Slide eyebrow="LIVE WALKTHROUGH · FUND DETAILS" title="12. Understanding a Fund Page">
-      <div className="single-screenshot">
-        <AssetPlaceholder src="/screenshots/example-fund-view.png" label="Example fund view screenshot"/>
+    <Slide eyebrow="LIVE WALKTHROUGH · FUND DETAILS" title="12. Understanding a Fund Page" className="media-slide">
+      <div className="screenshots-layout three-devices">
+        {fundViews.map((fund) => (
+          <figure className="screen-sequence" key={fund.src}>
+            <figcaption>
+              <span>{fund.step}</span>
+              <strong>{fund.label}</strong>
+            </figcaption>
+            <AssetPlaceholder src={fund.src} label={`${fund.label} screenshot`} />
+          </figure>
+        ))}
       </div>
     </Slide>
   );
 }
 
 function Slide13() {
+  const purchaseScreens = [
+    { src: "/screenshots/8.jpeg", label: "Choose a method" },
+    { src: "/screenshots/9.jpeg", label: "Enter cash" },
+    { src: "/screenshots/10.jpeg", label: "Enter units" },
+  ];
+
   return (
-    <Slide eyebrow="LIVE WALKTHROUGH · PURCHASE FLOW" title="13. How to Buy a Fund">
-      <div className="purchase-layout">
-        {["/screenshots/buy-step-1.png","/screenshots/buy-step-2.png","/screenshots/buy-step-3.png"].map((src,i)=><div className="purchase-step" key={src}><span>STEP {i+1}</span><AssetPlaceholder src={src} label={`Buy step ${i+1} screenshot`}/></div>)}
+    <Slide eyebrow="LIVE WALKTHROUGH · PURCHASE FLOW" title="13. How to Buy a Fund" className="media-slide">
+      <div className="purchase-slide-layout">
+        <div className="screenshots-layout three-devices">
+          {purchaseScreens.map((screen, index) => (
+            <figure className="screen-sequence" key={screen.src}>
+              <figcaption>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{screen.label}</strong>
+              </figcaption>
+              <AssetPlaceholder src={screen.src} label={`${screen.label} screenshot`} />
+            </figure>
+          ))}
+        </div>
+        <p className="persistent-disclaimer"><Icon name="shield"/>Minors may require a parent or legal guardian, depending on the provider’s current rules. Always review the investment details before confirming.</p>
       </div>
-      <p className="persistent-disclaimer"><Icon name="shield"/>Minors may require a parent or legal guardian, depending on the provider’s current rules. Always review the investment details before confirming.</p>
     </Slide>
   );
 }
