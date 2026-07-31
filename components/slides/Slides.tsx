@@ -589,7 +589,7 @@ function Slide19() {
   return (
     <Slide eyebrow="TIME · PATIENCE · CONSISTENCY" title="19. The Magic of Compound Growth">
       <div className="compound-layout">
-        <AssetPlaceholder src="/charts/compound-growth.png" label="Linear vs. compound growth graph" className="graph-placeholder"/>
+        <AssetPlaceholder src="/charts/liner-vs-compound.png" label="Linear vs. compound growth graph" className="graph-placeholder"/>
         <div className="compound-copy">
           <p>Previous returns stay invested and begin generating <em>additional returns.</em></p>
           <div className="compound-formula"><span>START EARLY</span><b>+</b><span>INVEST REGULARLY</span><b>+</b><span>TIME</span></div>
