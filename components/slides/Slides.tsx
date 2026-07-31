@@ -600,28 +600,6 @@ function Slide19() {
   );
 }
 
-function Slide20() {
-  const actions = ["Not taking money that is not ours","Returning extra change","Being truthful about spending","Keeping receipts & returning unused money","Avoiding scams and dishonest profit","Repaying what we owe"];
-  return (
-    <Slide eyebrow="CHARACTER · RESPONSIBILITY" title="20. Faithful With Little">
-      <div className="faith-layout">
-        <blockquote className="verse">
-          <span>“</span>
-          <p>One who is faithful in a very little is also faithful in much, and one who is dishonest in a very little is also dishonest in much.</p>
-          <cite>LUKE 16:10</cite>
-        </blockquote>
-        <div className="honesty-panel">
-          <div className="ledger-icon"><Icon name="book"/><span>✓</span></div>
-          <h2>HONESTY WITH MONEY</h2>
-          <div className="honesty-grid">{actions.map(item=><span key={item}><b>✓</b>{item}</span>)}</div>
-        </div>
-        <div className="trust-question"><small>DISCUSS</small><strong>Would you trust someone with <em>EGP 10,000</em> if they were dishonest with <em>EGP 100?</em></strong></div>
-        <p className="faith-message">Faithful with a little → trusted with more.</p>
-      </div>
-    </Slide>
-  );
-}
-
 function ClosingSlide() {
   const actions = [
     ["01","KNOWLEDGE","Invest in yourself for 30 minutes every day."],
@@ -666,6 +644,5 @@ export const slides = [
   <Slide17 key="17" />,
   <Slide18 key="18" />,
   <Slide19 key="19" />,
-  <Slide20 key="20" />,
   <ClosingSlide key="closing" />,
 ];
